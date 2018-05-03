@@ -9,20 +9,23 @@ import Search from '../Search/Search.js';
 class App extends Component {
   constructor( props ){
     super( props );
+    this.data = new DistrictRepository(kinderData); //***TEMP workaround***
     this.state = {
         districtsData: null
   }
-  }
+}
 
-  searchFilter = ( userInput ) => {
-    // debugger;
- const sanitizedUserInput = userInput.toUpperCase();
-  
-    const filteredDistricts = Object.keys(this.state.districtsData).map( districtKey => this.state.districtsData[districtKey]).filter( district => {
+  searchFilter = (userInput) => {
+    const sanitizedUserInput = userInput.toUpperCase();
+    
+    //***TEMP workaround***
+    const filteredDistricts = Object.keys( this.data.stats )
+    .map( districtKey => this.data.stats[districtKey])
+    .filter( district => {
       return district.location.includes( sanitizedUserInput );
     })
 
-    this.setState({ districtsData: filteredDistricts})
+    this.setState({ districtsData: filteredDistricts })
   }
   
   componentDidMount() {
@@ -30,8 +33,6 @@ class App extends Component {
     this.setState({
       districtsData: newData.stats
     })
-  // console.log(this.state.districtsData.COLORADO);
-  
   }
 
   render() {
