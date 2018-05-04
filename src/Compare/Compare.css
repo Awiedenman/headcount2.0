@@ -1,4 +1,7 @@
 .compare {
+  display: flex;
+  justify-content: center;
   height: 245px;
   background-color: blanchedalmond;
+  margin: 0 auto;
 }
