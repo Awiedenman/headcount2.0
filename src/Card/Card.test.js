@@ -10,9 +10,9 @@ describe('Card', () => {
     location: "Colorado", 
     stats: { "2007": 0.013}
   };
- 
   const mockCards = [
-    {district: {location: "COLORADO", stats: { "2007": 0.013}}}];
+    {district: {location: "COLORADO", stats: { "2007": 0.013}}}
+  ];
  
   beforeEach(() => {
     card = shallow(< Card 
@@ -49,6 +49,17 @@ describe('Card', () => {
 
       expect(spy).toHaveBeenCalled();
       
+    });
+
+    it('should not show 2 of the same cards', () => {
+      let mockCards = [
+        {district: {location: "COLORADO", stats: { "2007": 0.013}}},
+        {district: {location: "COLORADO", stats: { "2007": 0.013}}}
+      ];
+
+      expect(card.instance().handleCardClick()).toBe(undefined)
+
+
     });
 
     it('should update clicked state to opposite boolean when handleCardClick is called', () => {
