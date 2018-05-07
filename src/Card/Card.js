@@ -12,7 +12,6 @@ class Card extends Component {
   }
 
   handleCardClick = () => {
-    
     if (this.props.comparedCards.length === 2  && 
       !this.props.comparedCards.find(district => {
         return district.district.location === this.props.district.location;
